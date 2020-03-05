@@ -8,8 +8,8 @@ import 'dart:convert';
 void main() => runApp(Course());
 
 Future<CourseModel> sendData(String url,{Map body}) async{
-
   return http.post(url,body:body).then( (http.Response response) {
+    print(response.body);
     return ( json.decode(response.body)) ;
   });
 }
