@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'model/course_model.dart';
+import '../model/course_model.dart';
 import 'dart:async';
 import 'dart:convert';
 
 
-void main() => runApp(Course());
+
 
 Future<CourseModel> sendData(String url,{Map body}) async{
   return http.post(url,body:body).then( (http.Response response) {
