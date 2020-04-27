@@ -1,26 +1,27 @@
+import 'package:courseapp/model/Student.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../model/course_model.dart';
 import 'dart:async';
 import 'dart:convert';
 
 
 
 
-Future<CourseModel> sendData(String url,{Map body}) async{
+Future<StudentModel> sendData(String url,{Map body}) async{
   return http.post(url,body:body).then( (http.Response response) {
     print(response.body);
     return ( json.decode(response.body)) ;
   });
 }
 
-class Course extends StatelessWidget {
-  TextEditingController Title=TextEditingController();
-  TextEditingController discription=TextEditingController();
-  TextEditingController duration=TextEditingController();
-  TextEditingController venue=TextEditingController();
-  TextEditingController date=TextEditingController();
-  String Apiurl="https://assignmentcours.herokuapp.com/add/coursepdt";
+class Student extends StatelessWidget {
+  TextEditingController name=TextEditingController();
+  TextEditingController email=TextEditingController();
+  TextEditingController place=TextEditingController();
+  TextEditingController phone=TextEditingController();
+  TextEditingController parent=TextEditingController();
+  TextEditingController phonep=TextEditingController();
+  String Apiurl="https://assignmentcours.herokuapp.com/add/studreg";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,39 +83,49 @@ class Course extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     TextField(
-                      controller:Title,
+                      controller:name,
                       decoration: InputDecoration(
-                        hintText: "Student Id",
-                        prefixIcon: Icon(Icons.group),
+                        hintText: "Name",
+                        prefixIcon: Icon(Icons.account_circle),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                     ),
                     SizedBox(height: 10,),
                     TextField(
-                      controller: discription,
+                      controller: email,
                       decoration: InputDecoration(
-                        hintText: "Course Name",
-                        prefixIcon: Icon(Icons.book),
+                        hintText: "Email id",
+                        prefixIcon: Icon(Icons.mail),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                     ),
                     SizedBox(height: 10,),
                     TextField(
-                      controller: duration,
+                      controller: place,
                       decoration: InputDecoration(
-                        hintText: "fee",
-                        prefixIcon: Icon(Icons.attach_money),
+                        hintText: "Place",
+                        prefixIcon: Icon(Icons.location_on),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
                     ),
                     SizedBox(height: 10,),
                     TextField(
-                      controller: venue,
+                      controller: phone,
                       decoration: InputDecoration(
-                        hintText: "Institution",
+                        hintText: "Phone",
+                        prefixIcon: Icon(Icons.phone),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0)),
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    TextField(
+                      controller: parent,
+                      decoration: InputDecoration(
+                        hintText: "Parent Name",
                         prefixIcon: Icon(Icons.place),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0)),
@@ -122,10 +133,10 @@ class Course extends StatelessWidget {
                     ),
                     SizedBox(height: 10,),
                     TextField(
-                      controller: date,
+                      controller: phonep,
                       decoration: InputDecoration(
-                        hintText: "Duration",
-                        prefixIcon: Icon(Icons.date_range),
+                        hintText: "Parent Phone",
+                        prefixIcon: Icon(Icons.phone),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0)),
                       ),
@@ -135,21 +146,23 @@ class Course extends StatelessWidget {
                 ),
               ),
               GestureDetector(onTap: () async {
-                String  a = Title.text.toString();
-                String b = discription.text.toString();
-                var c=duration.text.toString();
-                String d = venue.text.toString();
-                var e=date.text.toString();
-                CourseModel coursemodel=CourseModel(sid: a,
-                cname: b,
-                cfee: c,
-                inst: d,
-                        duration: e);
+                String  a = name.text.toString();
+                String b = email.text.toString();
+                var c=place.text.toString();
+                String d = phone.text.toString();
+                var e=parent.text.toString();
+                var f =phonep.text.toString();
+                StudentModel model=StudentModel(Name: a,
+                    Email: b,
+                    place: c,
+                    phone: d,
+                    parent: e,
+                parentphone: f);
 
-              await sendData(Apiurl,body: coursemodel.toMap());
+                await sendData(Apiurl,body: model.toMap());
 
               },
-                
+
                 child: Container(
                   height: 50.0,
                   width: 300.0,
@@ -159,13 +172,13 @@ class Course extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                    Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                    )
-                    ]
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Submit",
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ]
                   ),
                 ),
               )
@@ -176,3 +189,5 @@ class Course extends StatelessWidget {
     );
   }
 }
+
+

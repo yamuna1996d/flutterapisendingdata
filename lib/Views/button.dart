@@ -1,4 +1,5 @@
 import 'package:courseapp/Views/Retrive.dart';
+import 'package:courseapp/Views/addStudent.dart';
 import 'package:courseapp/Views/main.dart';
 import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
@@ -28,7 +29,7 @@ class Button extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Register",
+                          "Add Student",
                           style: TextStyle(color: Colors.white),
                         )
                       ]
@@ -37,7 +38,7 @@ class Button extends StatelessWidget {
               ),
 
               GestureDetector(onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>RetriveData()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Student()));
               },
                 child: Container(
                   height: 50.0,
@@ -51,7 +52,7 @@ class Button extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Get Data",
+                          "Add Course",
                           style: TextStyle(color: Colors.white),
                         )
                       ]

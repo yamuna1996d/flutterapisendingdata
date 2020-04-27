@@ -1,22 +1,22 @@
 class CourseModel{
-  final String CourseTitle;
-  final String CourseDiscription;
-  final String CourseDuration;
-  final String CourseVenue;
-  final String CourseDate;
+  final String sid;
+  final String cname;
+  final String cfee;
+  final String inst;
+  final String duration;
 
-  CourseModel( {this.CourseTitle, this.CourseDiscription, this.CourseDuration,
-      this.CourseVenue, this.CourseDate });
+  CourseModel( {this.sid, this.cname, this.cfee,
+      this.inst, this.duration });
 
   factory CourseModel.fromJson(Map<String,dynamic> json)
   {
 
     return CourseModel(
-        CourseTitle: json['courseTitle'],
-        CourseDiscription: json['courseDescription'],
-        CourseDuration: json['courseDuration'],
-        CourseVenue:json['courseVenue'],
-        CourseDate:json['courseDate'],
+        sid: json['Studentid'],
+        cname: json['Coursename'],
+        cfee: json['fee'],
+        inst:json['Institute'],
+        duration:json['Duration'],
     );
   }
 
@@ -25,11 +25,11 @@ class CourseModel{
   {
     var map=new Map<String,dynamic>();
 
-    map["courseTitle"]=CourseTitle;
-    map["courseDescription"]=CourseDiscription;
-    map["courseDuration"]=CourseDuration;
-    map["courseVenue"]=CourseVenue;
-    map["courseDate"]=CourseDate;
+    map["Studentid"]=sid;
+    map["Coursename"]=cname;
+    map["fee"]=cfee;
+    map["Institute"]=inst;
+    map["Duration"]=duration;
     return map;
   }
 }
